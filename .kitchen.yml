@@ -1,0 +1,27 @@
+---
+driver:
+  name: vagrant
+
+provisioner:
+  name: chef_zero
+
+# Uncomment the following verifier to leverage Inspec instead of Busser (the
+# default verifier)
+# verifier:
+#   name: inspec
+
+platforms:
+  - name: ubuntu-14.04
+  - name: centos-6.6
+  - name: centos-7.1
+  - name: freebsd-10.2
+
+suites:
+  - name: default
+    driver:
+      ipaddress: 192.168.33.38
+      vagrantfile_erb: test/integration/Vagrantfile.erb
+      vm_hostname: b-supermarket
+    run_list:
+      - recipe[b-supermarket::default]
+    attributes: {}
